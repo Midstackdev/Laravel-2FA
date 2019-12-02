@@ -51,4 +51,33 @@ class User extends Authenticatable
     {
         return $this->two_factor_type === 'sms';
     }
+
+    public function hasTwoFactorType($type)
+    {
+        return $this->two_factor_type === $type;
+    }
+
+    public function hasDiallingCode($diallingCodeId)
+    {
+        if ($this->hasPhoneNumber() === false) {
+            return false;
+        }
+
+        return $this->phoneNumber->diallingCode->id == $diallingCodeId;
+    }
+
+    public function getPhoneNumber()
+    {
+        if ($this->hasPhoneNumber() === false) {
+            return false;
+        }
+
+        return $this->phoneNumber->phone_number;
+    }
+
+    public function hasPhoneNumber()
+    {
+        return $this->phoneNumber !== null;
+    }
+
 }

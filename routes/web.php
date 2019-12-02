@@ -22,3 +22,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/auth/token', 'Auth\AuthTokenController@getToken');
 Route::post('/auth/token', 'Auth\AuthTokenController@postToken')->name('authy.check');
 Route::get('/auth/token/resend', 'Auth\AuthTokenController@getResend')->name('authy.check.resend');
+
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/settings/twofactor', 'TwoFactorSettingsController@index')->name('twofactor.settings.index');
+    Route::put('/settings/twofactor', 'TwoFactorSettingsController@update')->name('twofactor.settings.update');
+});
