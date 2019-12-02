@@ -41,4 +41,14 @@ class User extends Authenticatable
     {
         return $this->hasOne(PhoneNumber::class);
     }
+
+    public function hasTwoFactorAuthenticationEnabled()
+    {
+        return $this->two_factor_type !== 'off';
+    }
+
+    public function hasSmsTwoFactorAuthenticationEnabled()
+    {
+        return $this->two_factor_type === 'sms';
+    }
 }
