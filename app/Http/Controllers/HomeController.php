@@ -23,6 +23,8 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $user = \Authy::registerUser(\Auth::user());
+        dd($user);
         return view('home');
     }
 }
