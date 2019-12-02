@@ -80,4 +80,23 @@ class User extends Authenticatable
         return $this->phoneNumber !== null;
     }
 
+    public function registeredForTwoFactorAuthentication()
+    {
+        return $this->authy_id !== null;
+    }
+
+    public function updatePhoneNumber($phoneNumber, $phoneNumberDiallingCode)
+    {
+        $this->phoneNumber()->delete();
+
+        if (!$phoneNumber) {
+            return;
+        }
+
+        return $this->phoneNumber()->create([
+            'phone_number' => $phoneNumber,
+            'dialling_code_id' => $phoneNumberDiallingCode,
+        ]);
+    }
+
 }

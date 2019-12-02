@@ -39,6 +39,7 @@
 
                             <div class="col-md-6">
                                 <select name="phone_number_dialling_code" id="phone_number_dialling_code" class="form-control @error('phone_number_dialling_code') is-invalid @enderror">
+                                    <option value="">Select a dialling code</option>
                                     @foreach($diallingCodes as $code)
                                         <option value="{{ $code->id }}"
                                             {{ old('phone_number_dialling_code') == $code->id || Auth::user()->hasDiallingCode($code->id) ? 'selected' : '' }}
