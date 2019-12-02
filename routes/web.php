@@ -18,3 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/auth/token', 'Auth\AuthTokenController@getToken');
+Route::post('/auth/token', 'Auth\AuthTokenController@postToken')->name('authy.check');
+Route::get('/auth/token/resend', 'Auth\AuthTokenController@getResend')->name('authy.check.resend');
